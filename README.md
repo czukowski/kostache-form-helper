@@ -1,8 +1,8 @@
 KOstache Form Helper
 ====================
 
-This module allows you to save some time generating forms for your applications, that use Kostache. It isn't anything advanced
-like [Formo](https://github.com/bmidget/kohana-formo), just a helper, even though it's more than a single class.
+This module allows you to save some time generating forms for applications, that use Kostache. It isn't anything advanced like
+[Formo](https://github.com/bmidget/kohana-formo), just a helper, even though it's more than a single class.
 
 Basic usage
 -----------
@@ -27,9 +27,10 @@ In your view file:
 Notes: 
 
 * You should add fields in a view constructor as you may want your fields to add some assets to your HTML head section and that must
-  be done before `Kostache::render()` is called.
+  be done before `Kostache::render()` is called, and constructor is the only such place in a Kostache class, that's also convenient
+  enough.
 * You add fields as array of `'field-name' => 'field-type'`. You can check supported field types in `classes/form/field` folder and
-  their templates are in `templates/form/helper` folder. You can add your own field types by adding new files to these folders, just
+  their templates are in `templates/form/field` folder. You can add your own field types by adding new files to these folders, just
   take a look how existing fields work!
 * The 2nd parameter (with a value of 'login') is a fieldset name. You can have multiple fieldsets and retrieve validation errors for
   any single fieldset, see `warnings()` method below.
@@ -48,11 +49,11 @@ View file continued:
 
 Notes:
 
-* I use `__FUNCTION__` for some arguments here so that I don't have to write field names, since they're the same as view method names.
+* I use `__FUNCTION__` for some arguments here, so that I don't have to write field names, since they're the same as view method names.
 * Accepted arguments of `$this->form->input()` vary depending on a field type. Check files in `classes/kohana/form/field`, that contain
   `factory()` method, to see how arguments must be specified for a particular field type.
 * `$this->form->defaults()` return default field values, that may be set by controller, e.g.: `$this->view->form->defaults($post);`.
-  The 2nd parameter used is the "default default", that will be used if no default for that field was set.
+  The 2nd parameter used is the "default default", that will be used if no default for that field has been set.
 
 View file continued:
 
@@ -77,7 +78,7 @@ View file continued:
 		}
 	}
 
-In your view template you just mark place, where a field should appear with a partial:
+In your view template you just mark places, where fields should appear with a partial:
 
 	<form action="" class="cmxform" method="post" enctype="application/x-www-form-urlencoded">
 		<fieldset>
@@ -170,4 +171,4 @@ Add a file `classes/form/hook.php`, if not exists and add or modify the followin
 
 That is, provided, that you've got a `HTML_Head` library, that adds links to your HTML head. The `add_field_type()` method is called every
 time a new field type is added to form. If you have many types, it may be a good idea to come up with a better solution for adding assets
-than `switch`, for example, by adding static methods into form field classes.
+than a `switch`, for example, by adding static methods into form field classes.
