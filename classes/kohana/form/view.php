@@ -223,9 +223,9 @@ class Kohana_Form_View
 	{
 		if ( ! isset(self::$_templates[$type]))
 		{
-			if ( ! ($template = Kohana::find_file('templates', 'form/helper/'.$type, 'mustache')))
+			if ( ! ($template = Kohana::find_file('templates', 'form/field/'.$type, 'mustache')))
 			{
-				throw new Kohana_Exception('Template not found: templates/form/helper/'.$type.'.mustache');
+				throw new Kohana_Exception('Template not found: templates/form/field/'.$type.'.mustache');
 			}
 			self::$_templates[$type] = file_get_contents($template);
 			Form_Hook::add_field_type(self::field_type($type));
