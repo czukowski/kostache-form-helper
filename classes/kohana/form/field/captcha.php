@@ -42,6 +42,6 @@ class Kohana_Form_Field_Captcha extends Form_Field
 
 	public function learn_more_url()
 	{
-		return ___('generic.captcha.learnmore');
+		return __('http://en.wikipedia.org/wiki/CAPTCHA');
 	}
 }

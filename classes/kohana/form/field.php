@@ -39,6 +39,6 @@ class Kohana_Form_Field
 
 	public function label()
 	{
-		return ___($this->label, $this->name);
+		return __($this->label);
 	}
 }

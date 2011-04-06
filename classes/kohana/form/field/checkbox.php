@@ -38,6 +38,6 @@ class Kohana_Form_Field_Checkbox extends Form_Field
 
 	public function label2()
 	{
-		return ___($this->label2);
+		return __($this->label2);
 	}
 }

@@ -1,5 +1,3 @@
-<li>
-	{{^inline}}<label for="{{id}}">&nbsp;</label>{{/inline}}
-	<input name="{{name}}" id="{{id}}" type="radio" {{#value}}value="{{value}}" {{/value}}{{#checked}}checked="{{checked}}" {{/checked}}/>
-	<label for="{{id}}" class="auto">{{label}}</label>
-</li>
+{{^inline}}<label for="{{id}}">&nbsp;</label>{{/inline}}
+<input name="{{name}}" id="{{id}}" type="radio" {{#value}}value="{{value}}" {{/value}}{{#checked}}checked="{{checked}}" {{/checked}}/>
+<label for="{{id}}" class="auto">{{label}}</label>
