@@ -1,0 +1,7 @@
+{{#not_empty}}
+<ul class="warn">
+{{#errors}}
+	<li {{#field}}data-field="{{field}}"{{/field}}>{{text}}</li>
+{{/errors}}
+</ul>
+{{/not_empty}}

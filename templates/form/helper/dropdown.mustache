@@ -1,0 +1,6 @@
+<li>
+	<label for="{{id}}">{{label}}</label>
+	<select name="{{name}}" id="{{id}}"{{#class}} class="{{class}}"{{/class}}>
+	{{#options}}		<option value="{{value}}"{{#class}} class="{{class}}"{{/class}}{{#data_aux}} data-aux="{{data_aux}}"{{/data_aux}}{{#selected}} selected="selected"{{/selected}}{{#disabled}} disabled="disabled"{{/disabled}}>{{label}}</option>
+	{{/options}}	</select>
+</li>
