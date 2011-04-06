@@ -52,6 +52,7 @@ Notes:
 * Accepted arguments of `$this->form->input()` vary depending on a field type. Check files in `classes/kohana/form/field`, that contain
   `factory()` method, to see how arguments must be specified for a particular field type.
 * `$this->form->defaults()` return default field values, that may be set by controller, e.g.: `$this->view->form->defaults($post);`.
+  The 2nd parameter used is the "default default", that will be used if no default for that field was set.
 
 View file continued:
 
@@ -116,3 +117,57 @@ Requirements
  * [KOstache 2](https://github.com/zombor/KOstache)
  * Made for [Kohana 3.1](http://kohanaframework.org), but may work with 3.0
  * __Note__: add the module _before_ `kostache` in your `bootstrap.php` as it overrides one of its methods.
+
+Add your own field types
+------------------------
+
+Here's an example of a color picker field type.
+
+Add a file `classes/form/field/colorpicker.php`
+
+	class Form_Field_Colorpicker extends Form_Field
+	{
+		public static function factory($name, $value = NULL, array $attributes = array())
+		{
+			return new Form_Field_Colorpicker(Arr::merge(array('name' => $name, 'value' => $value), $attributes));
+		}
+
+		public function img_blank()
+		{
+			return URL::site('images/blank.png');
+		}
+
+		public function select_color()
+		{
+			return __('Select color');
+		}
+	}
+
+Add a file `templates/form/field/colorpicker.mustache`:
+
+	<label for="{{id}}">{{label}}</label>
+	<input type="text" name="{{name}}" value="{{value}}" class="colorpicker"/>
+	<img id="{{id}}" class="{{#class}}{{class}} {{/class}}colorpicker" style="background:{{#value}}{{value}}{{/value}}{{^value}}none{{/value}};visibility:hidden" src="{{img_blank}}" alt="{{select_color}}" title="{{select_color}}"/>
+
+Add a file `classes/form/hook.php`, if not exists and add or modify the following method:
+
+	class Form_Hook extends Kohana_Form_Hook
+	{
+		public static function add_field_type($type)
+		{
+			$head = HTML_Head::instance();
+			switch ($type)
+			{
+				case 'colorpicker':
+					$head->javascript('vendor/MooRainbow/mooRainbow')
+						->javascript('domready/colorpicker')
+						->inline_javascript('URI.mooRainbowPath = \''.URL::site('images/mooRainbow').'\';')
+						->style('mooRainbow');
+					break;
+			}
+		}
+	}
+
+That is, provided, that you've got a `HTML_Head` library, that adds links to your HTML head. The `add_field_type()` method is called every
+time a new field type is added to form. If you have many types, it may be a good idea to come up with a better solution for adding assets
+than `switch`, for example, by adding static methods into form field classes.
