@@ -25,4 +25,9 @@ class Kohana_Form_Field_Submit extends Form_Field
 	{
 		return $this->id;
 	}
+
+	public function value()
+	{
+		return __($this->value ? $this->value : 'Submit');
+	}
 }
