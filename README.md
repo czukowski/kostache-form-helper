@@ -24,7 +24,7 @@ In your view file:
 			'submit' => 'submit',
 		), 'login');
 
-Notes: 
+Notes:
 
 * You should add fields in a view constructor as you may want your fields to add some assets to your HTML head section and that must
   be done before `Kostache::render()` is called, and constructor is the only such place in a Kostache class, that's also convenient
@@ -118,6 +118,8 @@ Requirements
  * [KOstache 2](https://github.com/zombor/KOstache)
  * Made for [Kohana 3.1](http://kohanaframework.org), but may work with 3.0
  * __Note__: add the module _before_ `kostache` in your `bootstrap.php` as it overrides one of its methods.
+ * __Also__, if you have your own Kostache extension in your `application` dir, change it to `extend Kohana_Form_Kostache` instead of
+   `Kohana_Kostache` or the module wouldn't work.
 
 Add your own field types
 ------------------------
