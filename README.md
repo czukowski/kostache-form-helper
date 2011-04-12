@@ -1,5 +1,5 @@
-KOstache Form Helper
-====================
+Form Helper for KOstache
+========================
 
 This module allows you to save some time generating forms for applications, that use Kostache. It isn't anything advanced like
 [Formo](https://github.com/bmidget/kohana-formo), just a helper, even though it's more than a single class.
@@ -117,14 +117,14 @@ Requirements
 
  * [KOstache 2](https://github.com/zombor/KOstache)
  * Made for [Kohana 3.1](http://kohanaframework.org), but may work with 3.0
- * __Note__: add the module _before_ `kostache` in your `bootstrap.php` as it overrides one of its methods.
+ * __Note__, that you need to add the module _before_ `kostache` in your `bootstrap.php` as it overrides one of its methods.
  * __Also__, if you have your own Kostache extension in your `application` dir, change it to `extend Kohana_Form_Kostache` instead of
    `Kohana_Kostache` or the module wouldn't work.
 
 Add your own field types
 ------------------------
 
-Here's an example of a color picker field type.
+Here's an example of a [color picker](http://mootools.net/forge/p/moorainbow) field type.
 
 Add a file `classes/form/field/colorpicker.php`
 
@@ -171,6 +171,6 @@ Add a file `classes/form/hook.php`, if not exists and add or modify the followin
 		}
 	}
 
-That is, provided, that you've got a `HTML_Head` library, that adds links to your HTML head. The `add_field_type()` method is called every
+That is, provided, that you've got an `HTML_Head` library, that adds links to your HTML head. The `add_field_type()` method is called every
 time a new field type is added to form. If you have many types, it may be a good idea to come up with a better solution for adding assets
 than a `switch`, for example, by adding static methods into form field classes.
